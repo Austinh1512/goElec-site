@@ -118,16 +118,16 @@ export default function NavBar() {
                         anchorEl={productsBtnAnchor}
                         onClose={() => setProductsBtnAnchor(null)}
                     >
-                        <MenuLink to="/electric_skateboards">
+                        <MenuLink to="/products?q=electric_skateboards">
                             <MenuItem>Electric Skateboards</MenuItem>
                         </MenuLink>
-                        <MenuLink to="/electric_scooters">
+                        <MenuLink to="/products?q=electric_scooters">
                             <MenuItem>Electric Scooters</MenuItem>
                         </MenuLink>
-                        <MenuLink to="/electric_bikes">
+                        <MenuLink to="/products?q=electric_bikes">
                             <MenuItem>Electric Bikes</MenuItem>
                         </MenuLink>
-                        <MenuLink to="/accessories">
+                        <MenuLink to="/products?q=accessories">
                             <MenuItem>Accessories</MenuItem>
                         </MenuLink>
                     </Menu>
@@ -183,16 +183,16 @@ export default function NavBar() {
                         </Expand>
                     </MenuItem>
                     <Collapse in={expanded} unmountOnExit timeout="auto">
-                        <MenuLink to="/electric_skateboards">
+                        <MenuLink to="/products?q=electric_skateboards">
                             <MenuItem divider={true} sx={{ paddingLeft: 5 }}>Electric Skateboard</MenuItem>
                         </MenuLink>
-                        <MenuLink to="/electric_scooters">
+                        <MenuLink to="/products?q=electric_scooters">
                             <MenuItem divider={true} sx={{ paddingLeft: 5 }}>Electric Scooters</MenuItem>
                         </MenuLink>
-                        <MenuLink to="/electric_bikes">
+                        <MenuLink to="/products?q=electric_bikes">
                             <MenuItem divider={true} sx={{ paddingLeft: 5 }}>Electric Bikes</MenuItem>
                         </MenuLink>
-                        <MenuLink to="/accessories">
+                        <MenuLink to="/products?q=accessories">
                             <MenuItem divider={true} sx={{ paddingLeft: 5 }}>Accessories</MenuItem>
                         </MenuLink>
                         
