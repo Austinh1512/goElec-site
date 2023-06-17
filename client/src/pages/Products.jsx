@@ -4,9 +4,10 @@ export default function Home() {
     return (
         <>
             <Helmet>
-                <title>goElec | Home</title>
+                <title>goElec | Products</title>
             </Helmet>
-            <h1 style={{color: "white"}}>Home</h1>
+
+            <h1 style={{color: "white"}}>Products</h1>
         </>
     )
 }
