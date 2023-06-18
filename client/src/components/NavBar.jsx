@@ -13,7 +13,7 @@ const NavBarBox = styled(Box)(({ theme }) => ({
     }
 }))
 
-const SearchTextInput = styled(TextField)(({ theme }) => ({
+const SearchTextInput = styled(TextField)({
     width: "70%",
     backgroundColor: "white",
     borderRadius: 10,
@@ -30,7 +30,7 @@ const SearchTextInput = styled(TextField)(({ theme }) => ({
         transform: 'translate(14px, 2px) scale(0.75)',
         color: "darkgrey"
     },
-}));
+});
 
 const MenuLink = styled(Link)({
     textDecoration: "none",
@@ -40,14 +40,14 @@ const MenuLink = styled(Link)({
     }
 })
 
-const ShoppingCartBadge = styled(Badge)({
+const ShoppingCartBadge = styled(Badge)(({ theme }) => ({
     "& .MuiBadge-badge": {
         border: "1px solid black",
-        backgroundColor: "#A6002A",
+        backgroundColor: theme.palette.secondary.main,
         fontSize: "10px",
         color: "white"
     }
-})
+}))
 
 const Expand = styled((props) => {
     const { expand, ...other } = props;
@@ -88,7 +88,7 @@ export default function NavBar() {
 
     return (
         <AppBar position="static">
-            <Toolbar sx={{ display: "flex", justifyContent: "space-between", bgcolor: "#00A67C", padding: 2 }}>
+            <Toolbar sx={{ display: "flex", justifyContent: "space-between", padding: 2 }}>
                 <Link to="/">
                     <img src="/logo.png" width={90} height={90} />
                 </Link>
