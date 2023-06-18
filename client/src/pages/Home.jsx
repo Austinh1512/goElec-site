@@ -1,4 +1,5 @@
 import { Helmet } from "react-helmet"
+import HeroBanner from "../components/HeroBanner"
 
 export default function Home() {
     return (
@@ -6,7 +7,7 @@ export default function Home() {
             <Helmet>
                 <title>goElec | Home</title>
             </Helmet>
-            <h1 style={{color: "white"}}>Home</h1>
+            <HeroBanner />
         </>
     )
 }
