@@ -3,12 +3,6 @@ import { AppBar, Toolbar } from "@mui/material";
 import NavBarCenter from "./NavBarCenter";
 import NavBarRight from "./NavBarRight";
 
-/*
- * Navbar is split into center and right.
- * This ensures Menu is closed
- * when each respective component is unmounted.
- */
-
 export default function NavBar() {
   return (
     <AppBar position="static">
