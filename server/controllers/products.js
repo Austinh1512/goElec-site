@@ -2,7 +2,6 @@ const Product = require("../models/Product");
 
 module.exports.getProducts = async (req, res) => {
   const { q } = req.query;
-  console.log(q);
   let products;
 
   if (q) {
