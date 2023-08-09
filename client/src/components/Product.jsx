@@ -19,7 +19,7 @@ export default function Product({ id, product }) {
         justifyContent: "center",
       }}
     >
-      <CardActionArea>
+      <CardActionArea href={`/products/${id}`}>
         <CardMedia
           component="img"
           height="100%"
