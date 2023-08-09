@@ -9,12 +9,15 @@ import "./index.css";
 import App from "./App.jsx";
 import theme from "./theme.js";
 import { ThemeProvider } from "@mui/material";
+import { ShoppingCartProvider } from "./context/ShoppingCartContext";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <ThemeProvider theme={theme}>
       <BrowserRouter>
-        <App />
+        <ShoppingCartProvider>
+          <App />
+        </ShoppingCartProvider>
       </BrowserRouter>
     </ThemeProvider>
   </React.StrictMode>
