@@ -1,11 +1,19 @@
-import React, { useEffect, useState } from "react";
+import { Fragment, useEffect, useState, useContext } from "react";
 import { useParams } from "react-router-dom";
 import axios from "../api/axios";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
 import { Helmet } from "react-helmet";
-import { Button, Container, Typography, styled } from "@mui/material";
+import {
+  Alert,
+  Button,
+  Container,
+  Snackbar,
+  Typography,
+  styled,
+} from "@mui/material";
 import Grid from "@mui/material/Unstable_Grid2";
+import ShoppingCartContext from "../context/ShoppingCartContext";
 import "swiper/css";
 import "swiper/css/navigation";
 
@@ -24,6 +32,12 @@ const CallToActionContainer = styled(Container)({
   marginTop: 25,
 });
 
+const SuccessAlert = styled(Alert)({
+  backgroundColor: "#4CAF50",
+  color: "white",
+  width: "100%",
+});
+
 const HeaderText = styled(Typography)(({ theme }) => ({
   color: "white",
   marginBottom: 50,
@@ -38,6 +52,8 @@ const HeaderText = styled(Typography)(({ theme }) => ({
 export default function ProductDetails() {
   const { id } = useParams();
   const [product, setProduct] = useState(null);
+  const [showSuccessAlert, setShowSuccessAlert] = useState(false);
+  const { setCart } = useContext(ShoppingCartContext);
 
   useEffect(() => {
     (async () => {
@@ -66,6 +82,19 @@ export default function ProductDetails() {
     }
   };
 
+  const addProductToCart = () => {
+    setCart((prev) => [...prev, product]);
+    setShowSuccessAlert(true);
+  };
+
+  const handleSuccessAlertClose = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+
+    setShowSuccessAlert(false);
+  };
+
   return (
     <div>
       <Helmet>
@@ -87,7 +116,7 @@ export default function ProductDetails() {
             <Typography variant="body1" sx={{ color: "white" }}>
               Price: ${product ? product.price : ""}
             </Typography>
-            <Button variant="contained">
+            <Button variant="contained" onClick={addProductToCart}>
               <Typography variant="button">Add To Cart</Typography>
             </Button>
           </CallToActionContainer>
@@ -98,10 +127,10 @@ export default function ProductDetails() {
             <Typography variant="body1" sx={{ color: "white" }}>
               {product &&
                 product.description.split("\n").map((line, idx) => (
-                  <React.Fragment key={idx}>
+                  <Fragment key={idx}>
                     {line}
                     <br />
-                  </React.Fragment>
+                  </Fragment>
                 ))}
             </Typography>
           </Container>
@@ -112,6 +141,17 @@ export default function ProductDetails() {
           </Typography>
         </Grid>
       </Grid>
+
+      <Snackbar
+        open={showSuccessAlert}
+        autoHideDuration={5000}
+        anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
+        onClose={handleSuccessAlertClose}
+      >
+        <SuccessAlert severity="success" onClose={handleSuccessAlertClose}>
+          Added to Cart!
+        </SuccessAlert>
+      </Snackbar>
     </div>
   );
 }

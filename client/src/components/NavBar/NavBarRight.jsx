@@ -20,13 +20,15 @@ import {
   Search,
   ShoppingCart,
 } from "@mui/icons-material";
-import { useEffect, useState } from "react";
+import { useContext, useState } from "react";
+import ShoppingCartContext from "../../context/ShoppingCartContext";
 
 export default function NavBarRight() {
   const [searchInputValue, setSearchInputValue] = useState("");
   const [searchInputLabel, setSearchInputLabel] = useState("search...");
   const [menuBtnAnchor, setMenuBtnAnchor] = useState(null);
   const [expanded, setExpanded] = useState(null);
+  const { cart } = useContext(ShoppingCartContext);
 
   const handleSearchInputChange = (e) => {
     const length = e.target.value.length;
@@ -46,19 +48,17 @@ export default function NavBarRight() {
     setExpanded(!expanded);
   };
 
-  useEffect(() => {
-    return () => {
-      setMenuBtnAnchor(null);
-    };
-  }, []);
-
   return (
     <>
       <NavBarBox>
         <IconButton sx={{ color: "white" }} size="large" aria-label="cart">
-          <ShoppingCartBadge badgeContent={2}>
+          {cart.length > 0 ? (
+            <ShoppingCartBadge badgeContent={cart.length}>
+              <ShoppingCart />
+            </ShoppingCartBadge>
+          ) : (
             <ShoppingCart />
-          </ShoppingCartBadge>
+          )}
         </IconButton>
         <IconButton sx={{ color: "white" }} size="large" aria-label="profile">
           <AccountCircle />
