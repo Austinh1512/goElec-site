@@ -13,12 +13,16 @@ connectDB();
 app.use(cors(corsOptions));
 app.use(passport.initialize());
 
-//Passport Strategy
+//Passport Strategies
 require("./config/passport-jwt");
+require("./config/passport-oauth");
 
 //Routes
 const productsRouter = require("./routes/products");
 app.use("/api/products", productsRouter);
+
+const OAuthRouter = require("./routes/auth/oauth");
+app.use("/api/auth", OAuthRouter);
 
 app.listen(5000, () => {
   console.log("Server running...");
