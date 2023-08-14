@@ -2,10 +2,12 @@ const mongoose = require("mongoose");
 const { Schema } = mongoose;
 
 const UserSchema = new Schema({
-  username: {
+  displayName: {
     type: String,
     required: true,
-    unique: true,
+  },
+  googleID: {
+    type: String,
   },
   email: {
     type: String,
@@ -14,7 +16,10 @@ const UserSchema = new Schema({
   },
   password: {
     type: String,
-    required: true,
+    required: function () {
+      //Only require password if account is not linked through Google
+      return !this.googleID;
+    },
   },
   addresses: [
     {
