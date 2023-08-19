@@ -21,6 +21,10 @@ const UserSchema = new Schema({
       return !this.googleID;
     },
   },
+  refreshToken: {
+    type: String,
+    default: "",
+  },
   addresses: [
     {
       streetAddress: {
