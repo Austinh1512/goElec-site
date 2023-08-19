@@ -10,14 +10,17 @@ import App from "./App.jsx";
 import theme from "./theme.js";
 import { ThemeProvider } from "@mui/material";
 import { ShoppingCartProvider } from "./context/ShoppingCartContext";
+import { UserProvider } from "./context/UserContext";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <ThemeProvider theme={theme}>
       <BrowserRouter>
-        <ShoppingCartProvider>
-          <App />
-        </ShoppingCartProvider>
+        <UserProvider>
+          <ShoppingCartProvider>
+            <App />
+          </ShoppingCartProvider>
+        </UserProvider>
       </BrowserRouter>
     </ThemeProvider>
   </React.StrictMode>
